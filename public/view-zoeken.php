@@ -1,8 +1,6 @@
 <?php
 require_once '../src/inc/session_check.php'; 
-view('header', ['title' =>  'Dashboard']); 
-
-require_once '../src/inc/session_check.php'; 
+view('header', ['title' => 'Dashboard']); 
 
 // Controleer of resultaten in de sessie zijn opgeslagen
 if(isset($_SESSION['resultaten'])){
@@ -22,12 +20,26 @@ if(isset($_SESSION['resultaten'])){
                 }
                 // Haal het ID op uit de rij
                 $id = $row['id'];
-                // Bewerkingslink toevoegen met het juiste ID
-                echo "<td>
-                        <a class='edit-data' href='editProduct.php?id=$id'>
-                            <ion-icon name='pencil-outline'></ion-icon>
-                        </a>
-                      </td>";
+                // Bewerkingslink toevoegen met het juiste ID en de juiste bewerkingspagina
+                if ($tabel == 'products') {
+                    echo "<td>
+                            <a class='edit-data' href='editProduct.php?id=$id'>
+                                <ion-icon name='pencil-outline'></ion-icon>
+                            </a>
+                          </td>";
+                } elseif ($tabel == 'customers') {
+                    echo "<td>
+                            <a class='edit-data' href='editcustomers.php?id=$id'>
+                                <ion-icon name='pencil-outline'></ion-icon>
+                            </a>
+                          </td>";
+                } elseif ($tabel == 'suppliers') {
+                    echo "<td>
+                            <a class='edit-data' href='editSupplier.php?id=$id'>
+                                <ion-icon name='pencil-outline'></ion-icon>
+                            </a>
+                          </td>";
+                }
                 echo "</tr>";
             }
         } else {
@@ -39,6 +51,7 @@ if(isset($_SESSION['resultaten'])){
     echo "Geen resultaten gevonden.";
 }
 ?>
+
 
 
 
