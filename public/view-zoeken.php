@@ -47,8 +47,8 @@ if(isset($_SESSION['resultaten'])){
         }
     }
     echo "</table>";
-} else {
-    echo "Geen resultaten gevonden.";
+} else{
+    header('location: dashboard.php');
 }
 ?>
 
